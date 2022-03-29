@@ -45,6 +45,16 @@ class TestCases(unittest.TestCase):
         self.assertEqual("2021-2022", exam.year)
         self.assertEqual("Эверстов Владимир Васильевич", exam.lecturer_fio)
 
+    def testcase_getSubject(self):
+        spec = Specialization("ФИИТ")
+        path = 'C:/Users/Admin/Desktop/1.xlsx'
+        sub_name = 'Основы программирования'
+        subject_test = Subject.getSubject(path, sub_name)
+        self.assertEqual("Б1.Б.22", subject_test.id)
+        self.assertEqual("Основы программирования", subject_test.name)
+        self.assertEqual(1, subject_test.semester)
+        self.assertEqual(144, subject_test.hours)
+        self.assertEqual(spec, subject_test.spec)
 
 if __name__ == '__main__':
     unittest.main()

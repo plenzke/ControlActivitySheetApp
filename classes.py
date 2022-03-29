@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
+from openpyxl import Workbook, load_workbook
 
 @dataclass
 class Student:
@@ -7,7 +8,7 @@ class Student:
     id: int
 
     def __init__(self, new_fio: str, new_id: int):
-        #self.fio = new_fio
+        self.fio = new_fio
         self.id = new_id
 
 @dataclass
@@ -31,6 +32,23 @@ class Subject:
         self.semester = new_semester
         self.hours = new_hours
         self.spec = new_spec
+
+    def getSubject(path, compare_name):
+        subject_wb = load_workbook(filename=path)
+        ws = subject_wb.active
+
+        for row in range(2, ws.max_row + 1):
+            if (ws[row][1].value == compare_name):
+                id = str(ws[row][0].value)
+                name = str(ws[row][1].value)
+                spec = Specialization(ws[row][2].value)
+                semester = int(ws[row][3].value)
+                hours = int(ws[row][4].value)
+
+        subject = Subject(id, name, semester, hours, spec)
+
+        return subject
+
 
 @dataclass
 class Group:
