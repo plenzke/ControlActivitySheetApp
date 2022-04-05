@@ -50,7 +50,6 @@ class Subject:
 
         return subject
 
-
 @dataclass
 class Group:
     name: str
@@ -149,8 +148,116 @@ class Institute:
         else:
             raise Exception("Error")
 
+    def getSubject(self, compare_id: str):
+        desired_sub = None
 
-#inst = Institute()
+        for subject in self.subjects:
+            if subject.id == compare_id:
+                desired_sub = subject
+
+        if desired_sub != None:
+            return desired_sub
+        else:
+            raise Exception("Takoy subjecta net v spiske")
+
+    def getStudent(self, compare_id: int):
+        desired_stud = None
+
+        for student in self.students:
+            if student.id == compare_id:
+                desired_stud = student
+
+        if desired_stud != None:
+            return desired_stud
+        else:
+            raise Exception("Takogo studenta net v spiske")
+
+    def getExam(self, compare_name: str, exDate: date):
+        desired_exam = None
+
+        for exam in self.exams:
+            if (exam.subject.name == compare_name) and (exam.examDate == exDate):
+                desired_exam = exam
+
+        if desired_exam != None:
+            return desired_exam
+        else:
+            raise Exception("Takogo examena net v spiske")
+
+    def getSpec(self, compare_name: str):
+        desired_spec = None
+
+        for spec in self.specs:
+            if spec.name == compare_name:
+                desired_spec = spec
+
+        if desired_spec != None:
+            return desired_spec
+        else:
+            raise Exception("Takoy specializacii net v spiske")
+
+    def getGroup(self, compare_name: str):
+        desired_group = None
+
+        for group in self.groups:
+            if group.name == compare_name:
+                desired_group = group
+
+        if desired_group != None:
+            return desired_group
+        else:
+            raise Exception("Takoy grouppi net v spiske")
+
+    def getExamPoints(self, compare_id: int):
+        desired_exPoints = None
+
+        for exPoints in self.exam_results:
+            if exPoints.student.id == compare_id:
+                desired_exPoints = exPoints
+
+        if desired_exPoints != None:
+            return desired_exPoints
+        else:
+            raise Exception("Resultatov examena etogo studenta net v spiske")
+
+    def importSubjects(self, path):
+        subject_wb = load_workbook(filename=path)
+        ws = subject_wb.active
+
+        for row in range(2, ws.max_row):
+            id = str(ws[row][0].value)
+            name = str(ws[row][1].value)
+            spec = Specialization(ws[row][2].value)
+            semester = int(ws[row][3].value)
+            hours = int(ws[row][4].value)
+            self.subjects.append(Subject(id, name, semester, hours, spec))
+
+    def importStudents(self, path):
+        subject_wb = load_workbook(filename=path)
+        ws = subject_wb.active
+
+        for row in range(2, ws.max_row + 1):
+            fio = str(ws[row][0].value)
+            id = int(ws[row][1].value)
+            self.students.append(Student(fio, id))
+
+    def importExams(self, path):
+        subject_wb = load_workbook(filename=path)
+        ws = subject_wb.active
+
+        for row in range(2, ws.max_row):
+            subject = Subject(ws[row][0].value)
+            examDate = date(ws[row][2].value)
+            lecturer_fio = str(ws[row][3].value)
+            year = str(ws[row][4].value)
+            self.subjects.append(Exam(subject, examDate, year, lecturer_fio))
+
+
+
+inst = Institute()
+path = 'C:/Users/Admin/Desktop/4.xlsx'
+inst.importExams(path)
+print(inst.exams)
 #student1 = Student("Павлов Вячеслав", 175676)
 #exPoints = ExamPoints(student1, 60, 28)
 #student2 = Student("Афанасьев Вячеслав", 175676)
