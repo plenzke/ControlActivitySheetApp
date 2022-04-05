@@ -104,7 +104,10 @@ class Institute:
 
     def addStudent(self, new_student: Student):
         if (isinstance(new_student, Student)) and (new_student not in self.students):
-            if not new_student.fio == True:
+            for stud in self.students:
+                if new_student.id == stud.id:
+                    raise Exception("Student s takim nomerom zach. knijki uje est' v spiske")
+            if not new_student.fio == "":
                 self.students.append(new_student)
                 self.students.sort(key=lambda x: x.fio)
         else:
@@ -112,7 +115,7 @@ class Institute:
 
     def addGroup(self, new_group: Group):
         if (isinstance(new_group, Group)) and (new_group not in self.groups):
-            if not new_group.name == True:
+            if not new_group.name == "":
                 self.groups.append(new_group)
                 self.groups.sort(key=lambda x: x.name)
         else:
@@ -120,7 +123,7 @@ class Institute:
 
     def addSubject(self, new_subject: Subject):
         if (isinstance(new_subject, Subject)) and (new_subject not in self.subjects):
-            if not new_subject.name == True:
+            if not new_subject.name == "":
                 self.subjects.append(new_subject)
                 self.subjects.sort(key=lambda x: x.name)
         else:
@@ -128,9 +131,11 @@ class Institute:
 
     def addSpecs(self, new_spec: Specialization):
         if (isinstance(new_spec, Specialization)) and (new_spec not in self.specs):
-            if not new_spec.name == True:
+            if not new_spec.name == "" and isinstance(new_spec.name, str):
                 self.specs.append(new_spec)
                 self.specs.sort(key=lambda x: x.name)
+            else:
+                raise Exception("Error")
         else:
             raise Exception("Error")
 
@@ -149,7 +154,10 @@ class Institute:
             raise Exception("Error")
 
     def getSubject(self, compare_id: str):
-        desired_sub = None
+        if isinstance(compare_id, str):
+            desired_sub = None
+        else:
+            raise Exception("Ojidalsya tip str")
 
         for subject in self.subjects:
             if subject.id == compare_id:
@@ -161,7 +169,10 @@ class Institute:
             raise Exception("Takoy subjecta net v spiske")
 
     def getStudent(self, compare_id: int):
-        desired_stud = None
+        if isinstance(compare_id, int):
+            desired_stud = None
+        else:
+            raise Exception("Ojidalsya tip int")
 
         for student in self.students:
             if student.id == compare_id:
@@ -173,7 +184,10 @@ class Institute:
             raise Exception("Takogo studenta net v spiske")
 
     def getExam(self, compare_name: str, exDate: date):
-        desired_exam = None
+        if (isinstance(compare_name, str)) and (isinstance(exDate, date)):
+            desired_exam = None
+        else:
+            raise Exception("Ojidalsya drugoi tip")
 
         for exam in self.exams:
             if (exam.subject.name == compare_name) and (exam.examDate == exDate):
@@ -185,7 +199,10 @@ class Institute:
             raise Exception("Takogo examena net v spiske")
 
     def getSpec(self, compare_name: str):
-        desired_spec = None
+        if isinstance(compare_name, str):
+            desired_spec = None
+        else:
+            raise Exception("Ojidalsya tip str")
 
         for spec in self.specs:
             if spec.name == compare_name:
@@ -197,7 +214,10 @@ class Institute:
             raise Exception("Takoy specializacii net v spiske")
 
     def getGroup(self, compare_name: str):
-        desired_group = None
+        if isinstance(compare_name, str):
+            desired_group = None
+        else:
+            raise Exception("Ojidalsya tip str")
 
         for group in self.groups:
             if group.name == compare_name:
@@ -209,7 +229,10 @@ class Institute:
             raise Exception("Takoy grouppi net v spiske")
 
     def getExamPoints(self, compare_id: int):
-        desired_exPoints = None
+        if isinstance(compare_id, int):
+            desired_exPoints = None
+        else:
+            raise Exception("Ojidalsya tip int")
 
         for exPoints in self.exam_results:
             if exPoints.student.id == compare_id:
@@ -252,19 +275,11 @@ class Institute:
             year = str(ws[row][4].value)
             self.subjects.append(Exam(subject, examDate, year, lecturer_fio))
 
-
-
+'''
 inst = Institute()
-path = 'C:/Users/Admin/Desktop/4.xlsx'
-inst.importExams(path)
-print(inst.exams)
-#student1 = Student("Павлов Вячеслав", 175676)
-#exPoints = ExamPoints(student1, 60, 28)
-#student2 = Student("Афанасьев Вячеслав", 175676)
-#exPoints2 = ExamPoints(student2, 60, 29)
-#inst.addStudent(student1)
-#inst.addExamResult(exPoints)
-#inst.addStudent(student2)
-#inst.addExamResult(exPoints2)
-#print(inst.students)
-#print(inst.exam_results)
+student = Student("Иванов Иван", 185774)
+student1 = Student("Алексеев Алексей", 185774)
+inst.addStudent(student)
+inst.addStudent(student1)
+print(inst.students)
+'''
