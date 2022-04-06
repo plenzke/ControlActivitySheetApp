@@ -203,6 +203,14 @@ class addExam_testcase(unittest.TestCase):
             inst.addExam(exam)
         self.assertEqual(len(inst.exams), 1)
 
+    def test_adding_5(self):
+        inst = Institute()
+        with self.assertRaises(Exception):
+            exDate = date(2018, 1, 10)
+            exam = Exam(1, exDate, "2021-2022", "Эверстов Владимир Васильевич")
+            inst.addExam(exam)
+        self.assertEqual(len(inst.exams), 0)
+
 class addExamResult_testcase(unittest.TestCase):
     def test_adding(self):
         student = Student("Павлов Вячеслав Июльевич", 185774)
@@ -220,6 +228,29 @@ class addExamResult_testcase(unittest.TestCase):
         inst.addExamResult(examPoints_1)
         inst.addExamResult(examPoints_2)
         self.assertEqual(len(inst.exam_results), 2)
+
+    def test_adding_3(self):
+        inst = Institute()
+        with self.assertRaises(Exception):
+            ep = ExamPoints(2, 55, 30)
+            inst.addExamResult(ep)
+        self.assertEqual(len(inst.exam_results), 0)
+
+    def test_adding_4(self):
+        inst = Institute()
+        with self.assertRaises(Exception):
+            student = Student("Иванов Иван Иванович", 123456)
+            exPoint = ExamPoints(student, 55.0, 30)
+            inst.addExamResult(exPoint)
+        self.assertEqual(len(inst.exam_results), 0)
+
+    def test_adding_5(self):
+        inst = Institute()
+        with self.assertRaises(Exception):
+            student = Student("Иванов Иван Иванович", 123456)
+            exPoint = ExamPoints(student, 55, 31.0)
+            inst.addExamResult(exPoint)
+        self.assertEqual(len(inst.exam_results), 0)
 
 if __name__ == '__main__':
     unittest.main()

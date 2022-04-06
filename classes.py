@@ -9,15 +9,19 @@ class Student:
     id: int
 
     def __init__(self, new_fio: str, new_id: int):
-        self.fio = new_fio
-        self.id = new_id
+        if isinstance(new_fio, str) and isinstance(new_id, int):
+            self.fio = new_fio
+            self.id = new_id
+        else:
+            raise Exception("Ojidalsya drugoi tip")
 
 @dataclass
 class Specialization:
     name: str
 
     def __init__(self, new_name: str):
-        self.name = new_name
+        if isinstance(new_name, str):
+            self.name = new_name
 
 @dataclass
 class Subject:
@@ -28,11 +32,14 @@ class Subject:
     spec: Specialization
 
     def __init__(self, new_id: str, new_name: str, new_semester: int, new_hours: int, new_spec: Specialization):
-        self.id = new_id
-        self.name = new_name
-        self.semester = new_semester
-        self.hours = new_hours
-        self.spec = new_spec
+        if isinstance(new_id, str) and isinstance(new_name, str) and isinstance(new_semester, int) and isinstance(new_hours, int) and isinstance(new_spec, Specialization):
+            self.id = new_id
+            self.name = new_name
+            self.semester = new_semester
+            self.hours = new_hours
+            self.spec = new_spec
+        else:
+            raise Exception("Ojidalsya drugoi tip")
 
     def getSubject(path, compare_name):
         subject_wb = load_workbook(filename=path)
@@ -57,9 +64,12 @@ class Group:
     spec: Specialization
 
     def __init__(self, new_name: str, new_year: int, new_spec: Specialization):
-        self.name = new_name
-        self.year = new_year
-        self.spec = new_spec
+        if isinstance(new_name, str) and isinstance(new_year, int) and isinstance(new_spec, Specialization):
+            self.name = new_name
+            self.year = new_year
+            self.spec = new_spec
+        else:
+            raise Exception("Ojidalsya drugoi tip")
 
 @dataclass
 class Exam:
@@ -69,10 +79,13 @@ class Exam:
     lecturer_fio: str
 
     def __init__(self, new_subject: Subject, new_examDate: date, new_year: str, new_lectFio: str):
-        self.subject = new_subject
-        self.examDate = new_examDate
-        self.year = new_year
-        self.lecturer_fio = new_lectFio
+        if isinstance(new_subject, Subject) and isinstance(new_examDate, date) and isinstance(new_year, str) and isinstance(new_lectFio, str):
+            self.subject = new_subject
+            self.examDate = new_examDate
+            self.year = new_year
+            self.lecturer_fio = new_lectFio
+        else:
+            raise Exception("Ojidalsya drugoi tip")
 
 @dataclass
 class ExamPoints:
@@ -81,9 +94,12 @@ class ExamPoints:
     examPoints: int
 
     def __init__(self, new_student: Student, new_Points: int, new_examPoints: int):
-        self.student = new_student
-        self.Points = new_Points
-        self.examPoints = new_examPoints
+        if isinstance(new_student, Student) and isinstance(new_Points, int) and isinstance(new_examPoints, int):
+            self.student = new_student
+            self.Points = new_Points
+            self.examPoints = new_examPoints
+        else:
+            raise Exception("Ojidalsya drugoi tip")
 
 @dataclass
 class Institute:
@@ -264,6 +280,7 @@ class Institute:
             id = int(ws[row][1].value)
             self.students.append(Student(fio, id))
 
+'''
     def importExams(self, path):
         subject_wb = load_workbook(filename=path)
         ws = subject_wb.active
@@ -274,6 +291,7 @@ class Institute:
             lecturer_fio = str(ws[row][3].value)
             year = str(ws[row][4].value)
             self.subjects.append(Exam(subject, examDate, year, lecturer_fio))
+'''
 
 '''
 inst = Institute()
