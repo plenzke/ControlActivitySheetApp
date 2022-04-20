@@ -14,17 +14,13 @@ class getStudent_testcase(unittest.TestCase):
 
     def test_get_2(self):
         student_1 = Student("Иванов Иван Иванович", 123456)
-        student_2 = None
         with self.assertRaises(Exception):
             student_2 = self.inst.getStudent("asd")
-        self.assertEqual(student_2, None)
 
     def test_get_3(self):
         student_1 = Student("Иванов Иван Иванович", 123456)
-        student_2 = None
         with self.assertRaises(Exception):
             student_2 = self.inst.getStudent(123444)
-        self.assertEqual(student_2, None)
 
 class getSubject_testcase(unittest.TestCase):
     path = "C:/Users/Admin/Desktop/1.xlsx"
@@ -40,18 +36,14 @@ class getSubject_testcase(unittest.TestCase):
     def test_get_2(self):
         spec = Specialization("ИВТ")
         subject_1 = Subject("Б1.В.25", "Программная инженерия", 5, 144, spec)
-        subject_2 = None
         with self.assertRaises(Exception):
             subject_2 = self.inst.getSubject(123)
-        self.assertEqual(subject_2, None)
 
     def test_get_3(self):
         spec = Specialization("ИВТ")
         subject_1 = Subject("Б1.В.25", "Программная инженерия", 5, 144, spec)
-        subject_2 = None
         with self.assertRaises(Exception):
             subject_2 = self.inst.getSubject("Б2.В.45")
-        self.assertEqual(subject_2, None)
 
 class getGroup_testcase(unittest.TestCase):
     def test_get_1(self):
@@ -67,20 +59,16 @@ class getGroup_testcase(unittest.TestCase):
         group_1 = Group("М-ФИИТ-21", 2021, spec)
         inst = Institute()
         inst.addGroup(group_1)
-        group_2 = None
         with self.assertRaises(Exception):
             group_2 = inst.getGroup(123)
-        self.assertEqual(group_2, None)
 
     def test_get_3(self):
         spec = Specialization("ФИИТ")
         group_1 = Group("М-ФИИТ-21", 2021, spec)
         inst = Institute()
         inst.addGroup(group_1)
-        group_2 = None
         with self.assertRaises(Exception):
             group_2 = inst.getGroup("М-ФИИТ-22")
-        self.assertEqual(group_2, None)
 
 class getSpec_testcase(unittest.TestCase):
     def test_get_1(self):
@@ -94,19 +82,15 @@ class getSpec_testcase(unittest.TestCase):
         spec_1 = Specialization("ФИИТ")
         inst = Institute()
         inst.addSpecs(spec_1)
-        spec_2 = None
         with self.assertRaises(Exception):
             spec_2 = inst.getSpec(123)
-        self.assertEqual(spec_2, None)
 
     def test_get_3(self):
         spec_1 = Specialization("ФИИТ")
         inst = Institute()
         inst.addSpecs(spec_1)
-        spec_2 = None
         with self.assertRaises(Exception):
             spec_2 = inst.getSpec("ИВТ")
-        self.assertEqual(spec_2, None)
 
 class getExam_testcase(unittest.TestCase):
     def test_get_1(self):
@@ -126,10 +110,8 @@ class getExam_testcase(unittest.TestCase):
         exam_1 = Exam(subject, examDate, "2021-2022", "Эверстов Владимир Васильевич")
         inst = Institute()
         inst.addExam(exam_1)
-        exam_2 = None
         with self.assertRaises(Exception):
             exam = inst.getExam(123, date(2022, 1, 1))
-        self.assertEqual(exam_2, None)
 
     def test_get_3(self):
         spec = Specialization("ФИИТ")
@@ -138,10 +120,8 @@ class getExam_testcase(unittest.TestCase):
         exam_1 = Exam(subject, examDate, "2021-2022", "Эверстов Владимир Васильевич")
         inst = Institute()
         inst.addExam(exam_1)
-        exam_2 = None
         with self.assertRaises(Exception):
             exam = inst.getExam("Методы тестирования и верификации программных продуктов", 123)
-        self.assertEqual(exam_2, None)
 
     def test_get_4(self):
         spec = Specialization("ФИИТ")
@@ -150,10 +130,8 @@ class getExam_testcase(unittest.TestCase):
         exam_1 = Exam(subject, examDate, "2021-2022", "Эверстов Владимир Васильевич")
         inst = Institute()
         inst.addExam(exam_1)
-        exam_2 = None
         with self.assertRaises(Exception):
             exam_2 = inst.getExam("Методы тестиров", date(2022, 1, 1))
-        self.assertEqual(exam_2, None)
 
 class getExamPoints_testcase(unittest.TestCase):
     def test_get_1(self):
@@ -169,20 +147,16 @@ class getExamPoints_testcase(unittest.TestCase):
         examPoints_1 = ExamPoints(student, 60, 30)
         inst = Institute()
         inst.addExamResult(examPoints_1)
-        examPoints_2 = None
         with self.assertRaises(Exception):
             examPoints_2 = inst.getExamPoints("asd")
-        self.assertEqual(examPoints_2, None)
 
     def test_get_3(self):
         student = Student("Павлов Вячеслав Июльевич", 185774)
         examPoints_1 = ExamPoints(student, 60, 30)
         inst = Institute()
         inst.addExamResult(examPoints_1)
-        examPoints_2 = None
         with self.assertRaises(Exception):
             examPoints_2 = inst.getExamPoints(185777)
-        self.assertEqual(examPoints_2, None)
 
 if __name__ == '__main__':
     unittest.main()

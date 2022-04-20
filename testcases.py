@@ -13,7 +13,7 @@ class TestCases(unittest.TestCase):
         self.assertEqual("ФИИТ", spec.name)
 
     def testcase_group(self):
-        spec = "ФИИТ"
+        spec = Specialization("ФИИТ")
         group = Group("М-ФИИТ-21", 2021, spec)
         self.assertEqual("М-ФИИТ-21", group.name)
         self.assertEqual(spec, group.spec)

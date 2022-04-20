@@ -170,7 +170,7 @@ class Institute:
             raise Exception("Error")
 
     def getSubject(self, compare_id: str):
-        if isinstance(compare_id, str):
+        if isinstance(compare_id, str) and compare_id != '':
             desired_sub = None
         else:
             raise Exception("Ojidalsya tip str")
@@ -185,7 +185,7 @@ class Institute:
             raise Exception("Takoy subjecta net v spiske")
 
     def getStudent(self, compare_id: int):
-        if isinstance(compare_id, int):
+        if isinstance(compare_id, int) and compare_id > 0 and len(str(compare_id)) == 6:
             desired_stud = None
         else:
             raise Exception("Ojidalsya tip int")
@@ -200,7 +200,7 @@ class Institute:
             raise Exception("Takogo studenta net v spiske")
 
     def getExam(self, compare_name: str, exDate: date):
-        if (isinstance(compare_name, str)) and (isinstance(exDate, date)):
+        if (isinstance(compare_name, str)) and (isinstance(exDate, date)) and compare_name != '':
             desired_exam = None
         else:
             raise Exception("Ojidalsya drugoi tip")
@@ -215,7 +215,7 @@ class Institute:
             raise Exception("Takogo examena net v spiske")
 
     def getSpec(self, compare_name: str):
-        if isinstance(compare_name, str):
+        if isinstance(compare_name, str) and compare_name != '':
             desired_spec = None
         else:
             raise Exception("Ojidalsya tip str")
@@ -230,7 +230,7 @@ class Institute:
             raise Exception("Takoy specializacii net v spiske")
 
     def getGroup(self, compare_name: str):
-        if isinstance(compare_name, str):
+        if isinstance(compare_name, str) and compare_name != '':
             desired_group = None
         else:
             raise Exception("Ojidalsya tip str")
@@ -245,7 +245,7 @@ class Institute:
             raise Exception("Takoy grouppi net v spiske")
 
     def getExamPoints(self, compare_id: int):
-        if isinstance(compare_id, int):
+        if isinstance(compare_id, int) and compare_id > 0:
             desired_exPoints = None
         else:
             raise Exception("Ojidalsya tip int")
