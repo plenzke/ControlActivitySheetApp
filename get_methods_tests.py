@@ -3,9 +3,11 @@ from classes import Student, Specialization, Subject, Group, Exam, ExamPoints, I
 import unittest
 
 class getStudent_testcase(unittest.TestCase):
+    inst = Institute()
 
     def test_get_1(self):
         student_1 = Student("Иванов Иван Иванович", 123456)
+        self.inst.addStudent(student_1)
         student_2 = self.inst.getStudent(123456)
         self.assertEqual(student_1, student_2)
 
@@ -20,10 +22,12 @@ class getStudent_testcase(unittest.TestCase):
             student_2 = self.inst.getStudent(123444)
 
 class getSubject_testcase(unittest.TestCase):
+    inst = Institute()
 
     def test_get_1(self):
         spec = Specialization("ИВТ")
         subject_1 = Subject("Б1.В.25", "Программная инженерия", 5, 144, spec)
+        self.inst.addSubject(subject_1)
         subject_2 = self.inst.getSubject("Б1.В.25")
         self.assertEqual(subject_1, subject_2)
 

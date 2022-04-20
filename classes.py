@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import List
 from datetime import date
-from openpyxl import Workbook, load_workbook
 
 @dataclass
 class Student:
@@ -258,27 +257,6 @@ class Institute:
             return desired_exPoints
         else:
             raise Exception("Resultatov examena etogo studenta net v spiske")
-
-    def importSubjects(self, path):
-        subject_wb = load_workbook(filename=path)
-        ws = subject_wb.active
-
-        for row in range(2, ws.max_row):
-            id = str(ws[row][0].value)
-            name = str(ws[row][1].value)
-            spec = Specialization(ws[row][2].value)
-            semester = int(ws[row][3].value)
-            hours = int(ws[row][4].value)
-            self.subjects.append(Subject(id, name, semester, hours, spec))
-
-    def importStudents(self, path):
-        subject_wb = load_workbook(filename=path)
-        ws = subject_wb.active
-
-        for row in range(2, ws.max_row + 1):
-            fio = str(ws[row][0].value)
-            id = int(ws[row][1].value)
-            self.students.append(Student(fio, id))
 
 '''
     def importExams(self, path):
