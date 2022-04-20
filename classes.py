@@ -40,22 +40,6 @@ class Subject:
         else:
             raise Exception("Ojidalsya drugoi tip")
 
-    def getSubject(path, compare_name):
-        subject_wb = load_workbook(filename=path)
-        ws = subject_wb.active
-
-        for row in range(2, ws.max_row + 1):
-            if (ws[row][1].value == compare_name):
-                id = str(ws[row][0].value)
-                name = str(ws[row][1].value)
-                spec = Specialization(ws[row][2].value)
-                semester = int(ws[row][3].value)
-                hours = int(ws[row][4].value)
-
-        subject = Subject(id, name, semester, hours, spec)
-
-        return subject
-
 @dataclass
 class Group:
     name: str
