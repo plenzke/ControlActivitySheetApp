@@ -3,9 +3,6 @@ from classes import Student, Specialization, Subject, Group, Exam, ExamPoints, I
 import unittest
 
 class getStudent_testcase(unittest.TestCase):
-    path = "C:/Users/Admin/Desktop/2.xlsx"
-    inst = Institute()
-    inst.importStudents(path)
 
     def test_get_1(self):
         student_1 = Student("Иванов Иван Иванович", 123456)
@@ -23,9 +20,6 @@ class getStudent_testcase(unittest.TestCase):
             student_2 = self.inst.getStudent(123444)
 
 class getSubject_testcase(unittest.TestCase):
-    path = "C:/Users/Admin/Desktop/1.xlsx"
-    inst = Institute()
-    inst.importSubjects(path)
 
     def test_get_1(self):
         spec = Specialization("ИВТ")
