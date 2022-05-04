@@ -33,5 +33,3 @@ jobs:
     - name: Test program
       run: |
         python -m unittest
-        python -m unittest add_methods_tests.py
-        python -m unittest get_methods_tests.py
