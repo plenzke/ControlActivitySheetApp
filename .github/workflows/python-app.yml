@@ -25,6 +25,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Tests
+      uses: actions/checkout@v3
+      with:
+        repository: 'plenzke/CASA_tests'
+        path: 'tests'
     - name: Test program
       run: |
         python -m unittest add_methods_tests.py
