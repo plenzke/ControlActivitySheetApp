@@ -32,5 +32,4 @@ jobs:
         path: 'tests'
     - name: Test program
       run: |
-        python -m unittest add_methods_tests.py
-        python -m unittest get_methods_tests.py
+        python -m unittest
