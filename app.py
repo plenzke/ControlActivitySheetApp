@@ -4,12 +4,6 @@ from datetime import datetime
 
 parser = argparse.ArgumentParser()
 institute = classes.Institute()
-spec_1 = classes.Specialization("ИВТ")
-institute.addSpecs(spec_1)
-subject_1 = classes.Subject("Б1.В.25", "Программная инженерия", 5, 144, spec_1)
-institute.addSubject(subject_1)
-student_1 = classes.Student("Иванов Иван Иванович", 123456)
-institute.addStudent(student_1)
 
 #Optional Argument
 subparser = parser.add_subparsers(dest='command')
